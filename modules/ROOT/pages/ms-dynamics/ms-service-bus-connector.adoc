@@ -230,6 +230,8 @@ image::ms-dynamics/ms-service-bus-studio-1.png[General]
 
 == Use Case: Get Queue list
 
+This use case retrieves the list of existing queues in a specific namespace. It returns the list in JSON format.
+
 image::ms-dynamics/ms-service-bus-flow.png[General]
 
 . Create a new Mule Application on your Studio and select an HTTP Listener as a Source in the new flow.
@@ -375,6 +377,28 @@ For more information about the app log, see xref:mule-runtime::logging-in-mule.a
 
 == Use Case: Windows Service Bus AMQP
 
+The following use case contains flows that send and receive messages for topics and queues:
+
+* load-http-form-flow
++
+Provides a web form for entering the parameters. The form is used form to send the message content to the queue or topics.
++
+* topic-endpoint-flow
++
+Receives a message through the `load-http-form-flow`, stores the message as the payload, converts it to a JAVA object, and sends it to the destination topic.
++
+* queue-endpoint-flow
++
+Receives a message through the `load-http-form-flow`, stores the message as the payload, converts it to a JAVA object and sends it to the destination queue.
++
+* queue-receive-flow
++
+Listens for, receives, and logs messages from a specified queue.
++
+* topic-receive-flow
++
+Listens for, receives, and logs messages from a specified topic.
+
 image::ms-dynamics/ms-service-bus-demo-1.png[Studio 7 flows for the Windows Service Bus AMQP demo]
 
 XML for this flow:
@@ -473,6 +497,32 @@ payload]]></ee:set-payload>
 ----
 
 == Use Case: Windows Service Bus Management
+
+The following use case contains flows that create topics, subscriptions, and rules:
+
+*service-bus-management-demoFlow
++
+Creates topics as follows:
+
+** The topic description is created, with the desired configuration (it is stored as payload).
+** The topic is created with the stored configuration from the previous step and the name of the topic to be created is obtained from the configured variable ** topic.name **.
+** A Json is built with part of the information of the topic created successfully in the previous step (the main values are indicated as id, author, etc).
+** Logs the JSON.
++
+*service-bus-management-demoFlow1
++
+* Creates subscriptions in a specified topic by following these steps:
+. Creates the subscription description with the desired configuration and stores it as the payload.
+. Creates the subscription using the stored configuration from the previous step, the subscription name from the variable `subscription.name` and the topic name from the variable `topic.name`.
+. Builds the JSON for the subscription.
+. Logs the JSON.
++
+* service-bus-management-demoFlow2
++
+. Creates the rule with the desired configuration and stores it as the payload.
+. Creates the rule using the stored configuration from the previous step, the rule name from the variable `rule.name`, the subscription name from the variable `subscription.name`, and the topic name from the variable `topic.name`.
+. Builds the JSON for the rule.
+. Logs the JSON.
 
 image::ms-dynamics/ms-service-bus-demo-2.png[Service Bus Management Studio 7 Flow]
 
