@@ -234,7 +234,7 @@ This use case retrieves the list of existing queues in a specific namespace. It 
 
 image::ms-dynamics/ms-service-bus-flow.png[General]
 
-. Create a new Mule Application on your Studio and select an HTTP Listener as a Source in the new flow.
+. Create a new Mule Application in Studio and select an HTTP Listener as a Source in the new flow.
 . Add a new HTTP Listener Configuration global element:
 +
 . Specify Host and port parameters with the following values:
@@ -381,23 +381,23 @@ The following use case contains flows that send and receive messages for topics 
 
 * load-http-form-flow
 +
-Provides a web form for entering the parameters. The form is used form to send the message content to the queue or topics.
+Provides a web form for entering the parameters. The form is used to send the message content to the queue or topics.
 +
 * topic-endpoint-flow
 +
-Receives a message through the `load-http-form-flow`, stores the message as the payload, converts it to a JAVA object, and sends it to the destination topic.
+Receives a message through the `load-http-form-flow`, stores the message as the payload, converts it to a Java object, and sends it to the destination topic.
 +
 * queue-endpoint-flow
 +
-Receives a message through the `load-http-form-flow`, stores the message as the payload, converts it to a JAVA object and sends it to the destination queue.
+Receives a message through the `load-http-form-flow`, stores the message as the payload, converts it to a Java object and sends it to the destination queue.
 +
 * queue-receive-flow
 +
-Listens for, receives, and logs messages from a specified queue.
+Listens for, receives, and logs messages from the specified queue.
 +
 * topic-receive-flow
 +
-Listens for, receives, and logs messages from a specified topic.
+Listens for, receives, and logs messages from the specified topic.
 
 image::ms-dynamics/ms-service-bus-demo-1.png[Studio 7 flows for the Windows Service Bus AMQP demo]
 
